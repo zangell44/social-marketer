@@ -1,7 +1,30 @@
-{% extends 'layout.html' %}
+{% extends 'company_template.html' %}
 
 {% block body %}
-    <div class="container">
-        <h1>{{ name }}</h1>
+    <div class="container", style="padding: 3em 1em">
+        <h2>Welcome to {{ name }}'s Twitter marketing dashboard</h2>
     </div>
+
+    <!--List of tweets relating to competitors-->
+    <table class="primary">
+      <thead>
+        <tr>
+          <th>Twitter User</th>
+          <th>Tweet</th>
+          <th>Sentiment Score</th>
+          <th>Conversion Likelihood</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for tweet in tweets %}
+            <tr>
+                <td>{{ tweet.user }}</td>
+                <td>{{ tweet.text }}</td>
+                <td>{{ tweet.sentiment}}</td>
+                <td>{{ tweet.likelihood }}</td>
+            </tr>
+          {% endfor %}
+
+      </tbody>
+    </table>
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h2>Please enter your company information below</h2>
+    <form action="/company" method="post". style='width:20em'>
+        <input type="text" name="name" placeholder="Company Name", size="30">
+        <input type="text" name="competitor" placeholder="Competitor Company Name", size="30">
+        <input type="submit" value="Add Company">
+    </form>
+{% endblock %}
