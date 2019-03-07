@@ -2,6 +2,12 @@
 
 {% block body %}
     <h2>Please enter your company information below</h2>
+    <p>
+        'Company' is the name of your institution. This will be used to keep track of your progress.\n
+        'Competitor' is the name of the company whose unhappy customers you would like to contact.\n
+        SocialMarketer automatically detects and displays tweeted complaints about your competitor,\n
+        enabling to respond offering promotions, or to gather business intelliegence.
+    </p>
     <form action="/company" method="post". style='width:20em'>
         <input type="text" name="name" placeholder="Company Name", size="30">
         <input type="text" name="competitor" placeholder="Competitor Company Name", size="30">

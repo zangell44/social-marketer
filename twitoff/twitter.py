@@ -53,14 +53,12 @@ def search_competitor(competitor, company_id, count=5000):
     since_id = DB.session.query(DB.func.max(Tweet.id))\
         .filter(Tweet.company_id == company_id).first()[0]
 
-    print (since_id)
-
 
     # need to use parameter 'since_id'
     search = TWITTER.search(q=competitor,
                             lang='en',
                             since_id=since_id,
-                            rpp=count)
+                            count=100)
 
     # filter out retweets
     tweets = [parse_search(tweet) for tweet in search if tweet.text[:2] != 'RT']
@@ -78,8 +76,10 @@ def search_competitor(competitor, company_id, count=5000):
                                        text=tweet['text'],
                                        user=tweet['user'],
                                        embedding=embedding,
+                                       sentiment=sentiment,
                                        company_id=company_id,
-                                       sentiment=sentiment))
+                                       link='https://twitter.com/i/web/status/' +
+                                            str(tweet['id'])))
 
     # return the tweets
     return competitor_tweets

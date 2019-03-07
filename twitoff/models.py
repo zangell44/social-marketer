@@ -36,6 +36,8 @@ class Tweet(DB.Model):
     likelihood = DB.Column(DB.Float)
     converted = DB.Column(DB.Integer)
 
+    link = DB.Column(DB.String(50))
+
     # Tweet(id=1, text='text', embedding=[1.0], user_id=1, company_id=1)
 
     def __repr__(self):
