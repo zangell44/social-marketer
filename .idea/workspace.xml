@@ -14,11 +14,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.5663717">
       <split-first>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.env">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="15">
                   <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Pipfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="270">
+                  <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -131,7 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$PROJECT_DIR$/twitoff/predict.py" />
         <option value="$PROJECT_DIR$/twitoff/templates/index.html" />
         <option value="$PROJECT_DIR$/twitoff/templates/signup.html" />
@@ -142,6 +150,7 @@
         <option value="$PROJECT_DIR$/twitoff/app.py" />
         <option value="$PROJECT_DIR$/twitoff/twitter.py" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/Pipfile" />
       </list>
     </option>
   </component>
@@ -319,13 +328,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twitoff/twitter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
@@ -340,6 +342,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
         </state>
       </provider>
     </entry>

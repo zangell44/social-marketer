@@ -17,6 +17,7 @@ sklearn = "*"
 scikit-learn = "*"
 gunicorn = "*"
 flask-sqlalchemy = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.6"
