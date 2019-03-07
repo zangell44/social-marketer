@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa84950b-a1bc-476e-a5da-14bebd916fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/twitoff/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/templates/company.html" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/templates/company.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/templates/company_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/templates/company_template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/twitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/twitter.py" afterDir="false" />
-    </list>
+    <list default="true" id="aa84950b-a1bc-476e-a5da-14bebd916fb2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +69,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/twitoff/twitter.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="387">
@@ -83,6 +77,15 @@
                   <folding>
                     <element signature="e#66#81#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Pipfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -149,10 +152,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="783" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="27" />
     <option name="y" value="23" />
-    <option name="width" value="1729" />
+    <option name="width" value="1489" />
     <option name="height" value="1342" />
   </component>
   <component name="ProjectView">
@@ -216,10 +219,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="783" y="23" width="1729" height="1342" extended-state="1" />
+    <frame x="27" y="23" width="1489" height="1342" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20140515" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23433243" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -240,13 +244,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Pipfile.lock">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
@@ -343,6 +340,13 @@
           <folding>
             <element signature="e#66#81#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
         </state>
       </provider>
     </entry>
