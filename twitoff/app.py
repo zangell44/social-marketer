@@ -27,7 +27,11 @@ def create_app():
     @app.route('/company/<name>', methods=['GET'])
     def company(name=None, message=''):
         if request.method == 'GET':
-            tweets =  Company.query.filter_by(name=name).first().tweets
+            q = Company.query.filter_by(name=name).first()
+            if q:
+                tweets = q.tweets
+            else:
+                tweets = []
             return render_template('company.html', name=name, tweets=tweets)
 
         # otherwise, try to add a company
@@ -46,5 +50,12 @@ def create_app():
     @app.route('/login/')
     def login():
         return render_template('login.html')
+
+    @app.route('/update/<name>')
+    def update(name):
+        company = Company.query.filter_by(name=name).first()
+        add_or_update_company(name, company.competitor)
+        tweets = Company.query.filter_by(name=name).first().tweets
+        return render_template('company.html', name=name, tweets=tweets)
 
     return app

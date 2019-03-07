@@ -7,6 +7,7 @@ import tweepy
 from decouple import config
 from .models import DB, Tweet, Company
 import re
+from sqlalchemy import func
 from textblob import TextBlob
 
 
@@ -35,7 +36,8 @@ def add_tweets(tweets):
 
     DB.session.commit()
 
-def search_competitor(competitor, company_id=1, count=100):
+
+def search_competitor(competitor, company_id, count=5000):
     """
     competitor : str
         Name of cometitive entity for which to search mentions
@@ -48,10 +50,17 @@ def search_competitor(competitor, company_id=1, count=100):
     # get id of latest current tweet
 
     # search competitors name and return list of tweets
-    # TODO - ensure only latest are displayed
+    since_id = DB.session.query(DB.func.max(Tweet.id))\
+        .filter(Tweet.company_id == company_id).first()[0]
+
+    print (since_id)
+
 
     # need to use parameter 'since_id'
-    search = TWITTER.search(q=competitor, lang='en', rpp=count)
+    search = TWITTER.search(q=competitor,
+                            lang='en',
+                            since_id=since_id,
+                            rpp=count)
 
     # filter out retweets
     tweets = [parse_search(tweet) for tweet in search if tweet.text[:2] != 'RT']
@@ -98,6 +107,7 @@ def clean_tweet(tweet):
     """
     return ''.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\ / \ / \S+)","", tweet))
 
+
 def get_tweet_sentiment(tweet):
     """
     Utility function to classify sentiment of passed tweet
@@ -105,6 +115,7 @@ def get_tweet_sentiment(tweet):
     """
     # create TextBlob object of passed tweet text
     return TextBlob(clean_tweet(tweet)).sentiment.polarity
+
 
 def add_or_update_company(name, competitor):
     """
@@ -117,16 +128,14 @@ def add_or_update_company(name, competitor):
         Upates are made directly to the database
     """
     try:
-        # get the company name, or add it to db
-        db_company = (Company.query.get(name)) or \
-                     Company(name=name, competitor=competitor)
-        DB.session.add(db_company)
-        DB.session.commit()
+        # add company if it doesn't exist
+        if not DB.session.query(Company).filter(Company.name==name).first():
+            db_company = Company(name=name, competitor=competitor)
+            DB.session.add(db_company)
+            DB.session.commit()
 
         # get latest tweets about competitors
         add_tweets(search_competitor(competitor, company_id=db_company.id))
-
-
     except:
         pass
     else:
