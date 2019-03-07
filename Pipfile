@@ -15,6 +15,7 @@ textblob = "*"
 python-dotenv = "*"
 sklearn = "*"
 scikit-learn = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
