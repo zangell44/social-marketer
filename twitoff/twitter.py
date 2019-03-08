@@ -47,14 +47,10 @@ def search_competitor(competitor, company_id, count=5000):
     return : list
         List of negative tweets mentioning the company
     """
-    # get id of latest current tweet
-
     # search competitors name and return list of tweets
     since_id = DB.session.query(DB.func.max(Tweet.id))\
         .filter(Tweet.company_id == company_id).first()[0]
 
-
-    # need to use parameter 'since_id'
     search = TWITTER.search(q=competitor,
                             lang='en',
                             since_id=since_id,
@@ -67,6 +63,7 @@ def search_competitor(competitor, company_id, count=5000):
         tweets = [tweet for tweet in tweets if get_tweet_sentiment(tweet['text']) < 0.0]
     else:
         return []
+
     # get tweet embeddings from basilica
     competitor_tweets = []
     for tweet in tweets:

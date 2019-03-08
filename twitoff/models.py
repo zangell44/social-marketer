@@ -7,15 +7,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 DB = SQLAlchemy()
 
-# class User(DB.Model):
-#     """
-#     Twitter users that we pull and analyze tweets for
-#     """
-#     id = DB.Column(DB.BigInteger, primary_key=True)
-#     name = DB.Column(DB.String(15), nullable=False)
-#
-#     def __repr__(self):
-#         return '<USER {}>'.format(self.name)
 
 class Tweet(DB.Model):
     """
@@ -24,9 +15,6 @@ class Tweet(DB.Model):
     id = DB.Column(DB.BigInteger, primary_key=True, autoincrement=True)
     text = DB.Column(DB.Unicode(500))
     embedding = DB.Column(DB.PickleType)
-    # user_id = DB.Column(DB.BigInteger, DB.ForeignKey('user.id'),
-    #         nullable=False)
-    # user = DB.relationship('User', backref=DB.backref('tweets', lazy=True))
 
     user = DB.Column(DB.String(15), nullable=False)
 
@@ -38,7 +26,7 @@ class Tweet(DB.Model):
 
     link = DB.Column(DB.String(50))
 
-    # Tweet(id=1, text='text', embedding=[1.0], user_id=1, company_id=1)
+    DB.Column(DB.PickleType)
 
     def __repr__(self):
         return '<Tweet {}>'.format(self.text)
@@ -51,5 +39,3 @@ class Company(DB.Model):
     name = DB.Column(DB.String(30), nullable=False)
     competitor = DB.Column(DB.String(30), nullable=False)
     tweets = DB.relationship('Tweet', backref='company')
-
-    # twt = Tweet(text='this is a test', embedding=[1,1], user='someone', company_id=1, sentiment=1.0, likelihood=1.0, converted=0)

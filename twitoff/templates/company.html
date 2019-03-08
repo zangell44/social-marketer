@@ -37,6 +37,10 @@
                 <td>{{ tweet.sentiment}}</td>
                 <td>{{ tweet.likelihood }}</td>
                 <td><a href={{ tweet.link }} target="_blank">Reply</a> </td>
+                <td>
+                    <a href="/converted/ {{ tweet.id }}" class="button success">Success</a>
+                    <a href="/failed/ {{ tweet.id }}" class="button error">Failure</a>
+                </td>
             </tr>
           {% endfor %}
 
