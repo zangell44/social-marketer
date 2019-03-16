@@ -7,7 +7,6 @@ import tweepy
 from decouple import config
 from .models import DB, Tweet, Company
 import re
-from sqlalchemy import func
 from textblob import TextBlob
 
 
@@ -32,8 +31,8 @@ def add_tweets(tweets):
         Commits changes to the database
     """
     for tweet in tweets:
-        DB.session.add(tweet)
-
+        if not DB.session.query(Tweet).filter(Tweet.id==tweet.id).first():
+            DB.session.add(tweet)
     DB.session.commit()
 
 
@@ -50,7 +49,7 @@ def search_competitor(competitor, company_id, count=5000):
     # search competitors name and return list of tweets
     since_id = DB.session.query(DB.func.max(Tweet.id))\
         .filter(Tweet.company_id == company_id).first()[0]
-
+    # import pdb; pdb.set_trace()
     search = TWITTER.search(q=competitor,
                             lang='en',
                             since_id=since_id,
@@ -73,7 +72,7 @@ def search_competitor(competitor, company_id, count=5000):
                                        text=tweet['text'],
                                        user=tweet['user'],
                                        embedding=embedding,
-                                       sentiment=sentiment,
+                                       sentiment=round(sentiment,2),
                                        company_id=company_id,
                                        link='https://twitter.com/i/web/status/' +
                                             str(tweet['id'])))
@@ -122,7 +121,7 @@ def add_or_update_company(name, competitor):
         name of company
 
     return : None
-        Upates are made directly to the database
+        Updates are made directly to the database
     """
     try:
         # add company if it doesn't exist
@@ -130,10 +129,26 @@ def add_or_update_company(name, competitor):
             db_company = Company(name=name, competitor=competitor)
             DB.session.add(db_company)
             DB.session.commit()
-
-        # get latest tweets about competitors
-        add_tweets(search_competitor(competitor, company_id=db_company.id))
     except:
         pass
-    else:
-        DB.session.commit()
+    # get latest tweets about competitors
+    db_company_id = DB.session.query(Company).filter(Company.name == name).first().id
+    add_tweets(search_competitor(competitor, company_id=db_company_id))
+    DB.session.commit()
+
+def update_conversion(tweet_id, status):
+    """
+    Updates conversion status of tweet
+
+    tweet_id: int
+        Unique key of tweet
+    status: int
+        1 for converted, 0 for not
+
+    return: None
+        Updates database
+    """
+    DB.session.query(Tweet).\
+            filter(Tweet.id == tweet_id).\
+            update({'converted' : status})
+    DB.session.commit()

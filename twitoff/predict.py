@@ -14,7 +14,7 @@ def get_model(company_name):
     """
     pass
 
-def partial_fit(tweet, result, company_name):
+def partial_fit(tweet_id, result, company_name):
     """
     Updates response prediction model given a single tweet and result. Saves new
     weights back into database.

@@ -5,6 +5,7 @@ Main application and routing logic for SocialMarketer
 from decouple import config
 from flask import Flask, request, render_template, redirect, url_for
 from .models import DB, Company
+from sqlalchemy import and_
 from .twitter import *
 
 
@@ -27,9 +28,14 @@ def create_app():
     @app.route('/company/<name>', methods=['GET'])
     def company(name=None, message=''):
         if request.method == 'GET':
-            q = Company.query.filter_by(name=name).first()
-            if q:
-                tweets = q.tweets
+            company_id = Company.query.filter_by(name=name).first().id
+            if company_id:
+                tweets = DB.session.query(Tweet).filter(
+                    and_(
+                        Tweet.company_id == company_id,
+                        Tweet.converted == None
+                    )
+                ).order_by(Tweet.likelihood.desc())
             else:
                 tweets = []
             return render_template('company.html', name=name, tweets=tweets)
@@ -55,7 +61,17 @@ def create_app():
     def update(name):
         company = Company.query.filter_by(name=name).first()
         add_or_update_company(name, company.competitor)
-        tweets = Company.query.filter_by(name=name).first().tweets
-        return render_template('company.html', name=name, tweets=tweets)
+        return redirect(url_for('company', name=name))
+
+    @app.route('/converted/<id>')
+    def converted(id):
+        update_conversion(id, 1)
+        company_id = DB.session.query(Tweet).filter(Tweet.id == id).first().company_id
+        company_name = DB.session.query(Company).filter(Company.id == company_id).first().name
+        return redirect(url_for('company', name=company_name))
+
+    @app.route('/failed/<id>')
+    def failed(id):
+        pass
 
     return app
