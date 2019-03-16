@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa84950b-a1bc-476e-a5da-14bebd916fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/twitoff/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/templates/company.html" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/templates/company.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/templates/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitoff/twitter.py" beforeDir="false" afterPath="$PROJECT_DIR$/twitoff/twitter.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitoff/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
+            <state relative-caret-position="735">
+              <caret line="74" column="31" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
               <folding>
                 <element signature="e#63#90#0" expanded="true" />
               </folding>
@@ -98,15 +91,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Procfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitoff/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -153,13 +137,13 @@
         <option value="$PROJECT_DIR$/twitoff/templates/signup.html" />
         <option value="$PROJECT_DIR$/twitoff/templates/company.html" />
         <option value="$PROJECT_DIR$/twitoff/twitter.py" />
-        <option value="$PROJECT_DIR$/twitoff/app.py" />
         <option value="$PROJECT_DIR$/twitoff/predict.py" />
+        <option value="$PROJECT_DIR$/twitoff/app.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="34" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="862" />
     <option name="y" value="23" />
     <option name="width" value="1462" />
     <option name="height" value="1337" />
@@ -223,9 +207,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="34" y="23" width="1462" height="1337" extended-state="1" />
+    <frame x="862" y="23" width="1462" height="1337" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23872311" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23872311" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -236,7 +221,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3296" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2634538" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2634538" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -343,16 +328,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twitoff/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="67" column="32" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="32" />
-          <folding>
-            <element signature="e#63#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twitoff/predict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -360,13 +335,6 @@
           <folding>
             <element signature="e#45#63#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -384,6 +352,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitoff/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="74" column="31" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
+          <folding>
+            <element signature="e#63#90#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

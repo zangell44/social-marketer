@@ -72,6 +72,9 @@ def create_app():
 
     @app.route('/failed/<id>')
     def failed(id):
-        pass
+        update_conversion(id, 0)
+        company_id = DB.session.query(Tweet).filter(Tweet.id == id).first().company_id
+        company_name = DB.session.query(Company).filter(Company.id == company_id).first().name
+        return redirect(url_for('company', name=company_name))
 
     return app
