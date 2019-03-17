@@ -26,8 +26,6 @@ class Tweet(DB.Model):
 
     link = DB.Column(DB.String(50))
 
-    DB.Column(DB.PickleType)
-
     def __repr__(self):
         return '<Tweet {}>'.format(self.text)
 
@@ -39,3 +37,4 @@ class Company(DB.Model):
     name = DB.Column(DB.String(30), nullable=False)
     competitor = DB.Column(DB.String(30), nullable=False)
     tweets = DB.relationship('Tweet', backref='company')
+    model = DB.Column(DB.PickleType)

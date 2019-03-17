@@ -2,26 +2,52 @@
 Houses model updates and predictions
 """
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from .models import Company
+from sklearn.linear_model import SGDClassifier
+from .models import Company, DB, Tweet
 
-def get_model(company_name):
+def update_estimates(company_id):
     """
-    Returns logistic regression object associated with a company
+    Updates estimated conversion likelihood for a given company id
 
-    :param company_name:
-    :return:
+    company_id : int
+
+    return : None
     """
-    pass
+    company_model = DB.session.query(Company).filter(Company.id == company_id).first().model
+    tweets = DB.session.query(Tweet).filter(Tweet.company_id == company_id).all()
 
-def partial_fit(tweet_id, result, company_name):
+    # loop through tweets and update predictions
+    for twt in tweets:
+        pred = company_model.predict_proba(np.array(twt.embedding).reshape(1, -1))[0][1]
+        DB.session.query(Tweet). \
+            filter(Tweet.id == twt.id). \
+            update({'likelihood' : round(pred,2)})
+
+    DB.session.commit()
+
+
+def partial_fit(tweet_id):
     """
     Updates response prediction model given a single tweet and result. Saves new
     weights back into database.
 
-    :param tweet:
-    :param result:
-    :param company_name:
-    :return:
+    tweet_id : int
+        Unique identifier of tweet thats been updated
+
+    return : None
+        Company model is updated in database
     """
-    pass
+    # get the company model object to update
+    tweet = DB.session.query(Tweet).filter(Tweet.id == tweet_id).first()
+    company_id = tweet.company_id
+    company_model = DB.session.query(Company).filter(Company.id == company_id).first().model
+
+    # get the embedding and result
+    company_model.partial_fit(np.array(tweet.embedding).reshape(1, -1),
+                              np.array(tweet.converted).ravel(),
+                              classes=[0,1])
+    DB.session.query(Company). \
+        filter(Company.id == company_id). \
+        update({'model': company_model})
+    DB.session.commit()
+

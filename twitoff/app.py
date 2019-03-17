@@ -5,6 +5,7 @@ Main application and routing logic for SocialMarketer
 from decouple import config
 from flask import Flask, request, render_template, redirect, url_for
 from .models import DB, Company
+from .predict import partial_fit, update_estimates
 from sqlalchemy import and_
 from .twitter import *
 
@@ -66,14 +67,18 @@ def create_app():
     @app.route('/converted/<id>')
     def converted(id):
         update_conversion(id, 1)
+        partial_fit(id)
         company_id = DB.session.query(Tweet).filter(Tweet.id == id).first().company_id
+        update_estimates(company_id)
         company_name = DB.session.query(Company).filter(Company.id == company_id).first().name
         return redirect(url_for('company', name=company_name))
 
     @app.route('/failed/<id>')
     def failed(id):
         update_conversion(id, 0)
+        partial_fit(id)
         company_id = DB.session.query(Tweet).filter(Tweet.id == id).first().company_id
+        update_estimates(company_id)
         company_name = DB.session.query(Company).filter(Company.id == company_id).first().name
         return redirect(url_for('company', name=company_name))
 

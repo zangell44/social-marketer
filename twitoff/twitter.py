@@ -7,6 +7,7 @@ import tweepy
 from decouple import config
 from .models import DB, Tweet, Company
 import re
+from sklearn.linear_model import SGDClassifier
 from textblob import TextBlob
 
 
@@ -126,7 +127,9 @@ def add_or_update_company(name, competitor):
     try:
         # add company if it doesn't exist
         if not DB.session.query(Company).filter(Company.name==name).first():
-            db_company = Company(name=name, competitor=competitor)
+            db_company = Company(name=name,
+                                 competitor=competitor,
+                                 model=SGDClassifier(loss='log'))
             DB.session.add(db_company)
             DB.session.commit()
     except:
