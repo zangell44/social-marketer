@@ -4,7 +4,6 @@ SQLALchemy models for TwitOff
 
 from flask_sqlalchemy import SQLAlchemy
 
-
 DB = SQLAlchemy()
 
 
@@ -24,7 +23,7 @@ class Tweet(DB.Model):
     likelihood = DB.Column(DB.Float)
     converted = DB.Column(DB.Integer)
 
-    link = DB.Column(DB.String(50))
+    link = DB.Column(DB.String(75))
 
     def __repr__(self):
         return '<Tweet {}>'.format(self.text)

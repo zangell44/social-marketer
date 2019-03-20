@@ -4,7 +4,7 @@ Main application and routing logic for SocialMarketer
 
 from decouple import config
 from flask import Flask, request, render_template, redirect, url_for
-from .models import DB, Company
+from .models import Company, DB
 from .predict import partial_fit, update_estimates
 from sqlalchemy import and_
 from .twitter import *
@@ -15,7 +15,7 @@ def create_app():
     Create and configure an instance of the flask application
     """
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://qkqmtneglkrfts:acbb2730a7df0a599cbdac2b4e1db6cfa1578d2d0b47d5e2503d66e176e81fa8@ec2-75-101-133-29.compute-1.amazonaws.com:5432/de619u90jj7ocb;'#config('DATABASE_URL')
+    app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
     app.config['ENV'] = 'debug' # to do, change before deploy
 
