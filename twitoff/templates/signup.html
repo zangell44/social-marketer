@@ -1,18 +1,22 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+<div class="jumbotron text-center", align="center">
     <h2>Please enter your company information below</h2>
-    <p>
+    <p style="font-size:100%">
         'Company' is the name of your institution. This will be used to keep track of your progress.<br /><br />
         'Competitor' is the name of the company whose unhappy customers you would like to contact.<br /><br />
         SocialMarketer automatically detects and displays tweeted complaints about your competitor,<br />
-        enabling to respond offering promotions, or to gather business intelliegence.
+        enabling to respond offering promotions, or to gather business intelliegence. <br /><br />
+        To test out a pretrained model, enter 'Verizon' and 'Comcast'.
     </p>
     <form action="/company" method="post". style='width:20em'>
         <h4>Company Name</h4>
         <input type="text" name="name" placeholder="Company Name", size="30">
         <h4>Competitor Name</h4>
         <input type="text" name="competitor" placeholder="Competitor Company Name", size="30">
+        <br /><br />
         <input type="submit" value="Add Company">
     </form>
+</div>
 {% endblock %}
