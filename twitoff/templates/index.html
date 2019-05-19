@@ -1,15 +1,30 @@
 {% extends 'layout.html' %}
 
+<button class="myCoolButton">My Cool Button</button>
+
+
 {% block body %}
-    <div class="jumbotron text-center">
-        <h1>Welcome to SocialMarketer</h1>
-        <pclass="Lead">SocialMarketer leverages natural language processing and machine learning algorithms <br/>
-        to help companies identify marketing opportunities on Twitter. <br/>
-        <br/>
-        We automatically scan Twitter for complaints made about your competitor, and provide <br/>
-        a simple interface for responding and converting these users. <br/> <br/>
-        Throughout the process, you can track interaction successes and faillures. SocialMarketer will <br>
-        create a machine learning algorithm to identify the most promising users, based on past data.
-        </pclass></p>
+    <div class="jumbotron text-center", align="center">
+        <h1 style="font-size:300%">Welcome to SocialMarketer</h1>
+        <p style="font-size:150%">
+        SocialMarketer leverages natural language processing and <br/>
+        machine learning algorithms to help companies identify marketing <br/>
+        opportunities on Twitter. <br/><br/>
+
+        We automatically scan Twitter for complaints made about your <br/>
+        competitor, and provide a simple interface for responding and <br/>
+        converting these users. <br/> <br/>
+
+        Throughout the process, your company can track interaction successes <br/>
+        and faillures. SocialMarketer will create a machine learning algorithm <br/>
+        to identify the most promising opportunities, based on past data.
+        </p>
+        <!--<a href="/signup" class="button">Get Started</a>-->
+        <style>
+            .mainButton{
+                font-size: 2.5em;
+            }
+        </style>
+        <a href="/signup" class="button mainButton">Get Started!</a
     </div>
 {% endblock %}
