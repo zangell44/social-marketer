@@ -10,12 +10,12 @@
         <label for="bmenub" class="burger pseudo button">Menu</label>
         <div class="menu">
                 <a href="/update/{{ name }}" class="button">Find New Tweets</a>
-                <a href="/company/{{ name }}/all" class="button success">Show All Tweets</a>
+                <a href="/company/{{ name }}/all" class="button">Show All Tweets</a>
         </div>
     </nav>
     <div class="container", style="padding: 3em 1em">
         <h2>Welcome to {{ name }}'s Twitter marketing dashboard!</h2>
-        <p>Below is a list of mentions of your competitor that you haven't replied to.</p>
+        <p>Below is a list of all collected mentions of your competitior.</p>
     </div>
 
     <!--List of tweets relating to competitors-->
@@ -27,7 +27,6 @@
           <th>Sentiment Score</th>
           <th>Conversion Likelihood</th>
           <th>Link</th>
-          <th>Converted?</th>
         </tr>
       </thead>
       <tbody>
@@ -38,10 +37,6 @@
                 <td>{{ tweet.sentiment}}</td>
                 <td>{{ tweet.likelihood }}</td>
                 <td><a href={{ tweet.link }} target="_blank">Reply</a> </td>
-                <td>
-                    <a href="/converted/{{ tweet.id }}" class="button success">Success</a>
-                    <a href="/failed/{{ tweet.id }}" class="button error">Failure</a>
-                </td>
             </tr>
           {% endfor %}
 

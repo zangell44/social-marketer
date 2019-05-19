@@ -5,7 +5,7 @@ Main application and routing logic for SocialMarketer
 from decouple import config
 from flask import Flask, request, render_template, redirect, url_for
 from .models import Company, DB
-from .predict import partial_fit, update_estimates
+from .predict import fit, update_estimates
 from sqlalchemy import and_
 from .twitter import *
 
@@ -27,19 +27,33 @@ def create_app():
 
     @app.route('/company', methods=['POST'])
     @app.route('/company/<name>', methods=['GET'])
-    def company(name=None, message=''):
+    @app.route('/company/<name>/<select>', methods=['GET'])
+    def company(name=None, select=None):
         if request.method == 'GET':
-            company_id = Company.query.filter_by(name=name).first().id
-            if company_id:
-                tweets = DB.session.query(Tweet).filter(
-                    and_(
-                        Tweet.company_id == company_id,
-                        Tweet.converted == None
-                    )
-                ).order_by(Tweet.likelihood.desc())
+            if select is not None:
+                company_id = Company.query.filter_by(name=name).first().id
+                if company_id:
+                    tweets = DB.session.query(Tweet).filter(
+                        (
+                                Tweet.company_id == company_id
+                        )
+                    ).order_by(Tweet.likelihood.desc())
+                else:
+                    tweets = []
+                return render_template('company_all.html', name=name, tweets=tweets)
+
             else:
-                tweets = []
-            return render_template('company.html', name=name, tweets=tweets)
+                company_id = Company.query.filter_by(name=name).first().id
+                if company_id:
+                    tweets = DB.session.query(Tweet).filter(
+                        and_(
+                            Tweet.company_id == company_id,
+                            Tweet.converted == None
+                        )
+                    ).order_by(Tweet.likelihood.desc())
+                else:
+                    tweets = []
+                return render_template('company.html', name=name, tweets=tweets)
 
         # otherwise, try to add a company
         name, competitor = request.values['name'], request.values['competitor']
@@ -67,8 +81,8 @@ def create_app():
     @app.route('/converted/<id>')
     def converted(id):
         update_conversion(id, 1)
-        partial_fit(id)
         company_id = DB.session.query(Tweet).filter(Tweet.id == id).first().company_id
+        fit(company_id)
         update_estimates(company_id)
         company_name = DB.session.query(Company).filter(Company.id == company_id).first().name
         return redirect(url_for('company', name=company_name))
@@ -76,8 +90,8 @@ def create_app():
     @app.route('/failed/<id>')
     def failed(id):
         update_conversion(id, 0)
-        partial_fit(id)
         company_id = DB.session.query(Tweet).filter(Tweet.id == id).first().company_id
+        fit(company_id)
         update_estimates(company_id)
         company_name = DB.session.query(Company).filter(Company.id == company_id).first().name
         return redirect(url_for('company', name=company_name))

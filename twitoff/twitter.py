@@ -6,8 +6,11 @@ import basilica
 import tweepy
 from decouple import config
 from .models import DB, Tweet, Company
+import numpy as np
 import re
-from sklearn.linear_model import SGDClassifier
+from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
 from textblob import TextBlob
 
 
@@ -41,8 +44,8 @@ def search_competitor(competitor, company_id, count=5000):
     """
     competitor : str
         Name of cometitive entity for which to search mentions
-    company : str
-        Name of company gatherering BI
+    company_id : int
+        Identifier for company
 
     return : list
         List of negative tweets mentioning the company
@@ -64,11 +67,22 @@ def search_competitor(competitor, company_id, count=5000):
     else:
         return []
 
+    # get company predictive model
+    company_model = DB.session.query(Company).filter(Company.id == company_id).first().model
+
     # get tweet embeddings from basilica
     competitor_tweets = []
     for tweet in tweets:
         sentiment = get_tweet_sentiment(tweet['text'])
-        embedding = BASILICA.embed_sentence(tweet['text'], model='twitter')
+        embedding = BASILICA.embed_sentence(tweet['text'],
+                                            model='twitter')
+
+        # get predictions if model is trained
+        try:
+            pred = round(company_model.predict_proba(np.array(embedding).reshape(1, -1))[0][1],2)
+        except:
+            pred = None
+
         competitor_tweets.append(Tweet(id=tweet['id'],
                                        text=tweet['text'],
                                        user=tweet['user'],
@@ -76,7 +90,8 @@ def search_competitor(competitor, company_id, count=5000):
                                        sentiment=round(sentiment,2),
                                        company_id=company_id,
                                        link='https://twitter.com/i/web/status/' +
-                                            str(tweet['id'])))
+                                            str(tweet['id']),
+                                       likelihood=pred))
 
     # return the tweets
     return competitor_tweets
@@ -127,9 +142,16 @@ def add_or_update_company(name, competitor):
     try:
         # add company if it doesn't exist
         if not DB.session.query(Company).filter(Company.name==name).first():
+            pipe = Pipeline(
+                memory=None,
+                steps=[
+                    ('pca', PCA(n_components=10)),
+                    ('lr', LogisticRegression())
+                ]
+            )
             db_company = Company(name=name,
                                  competitor=competitor,
-                                 model=SGDClassifier(loss='log'))
+                                 model=pipe)
             DB.session.add(db_company)
             DB.session.commit()
     except:
